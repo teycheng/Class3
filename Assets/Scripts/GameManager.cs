@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] Ball ball;
+    [SerializeField] UIManager ui;
+
     float maxX = 13;
     float minX = -13;
     int scoreP1 = 0;
@@ -14,32 +16,19 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (transform.position.x > maxX)
+        if (ball.transform.position.x > maxX)
         {
             scoreP1++;
             ball.Reset();
+            ball.Launch();
         }
-        else if (transform.position.x < minX)
+        else if (ball.transform.position.x < minX)
         {
             scoreP2++;
             ball.Reset();
+            ball.Launch();
         }
+        ui.UpdateScore(scoreP1,scoreP2);
     }
 
-    public Vector3 GetRandomBallDirection()
-    {
-        float x = 1;
-        float y = 1;
-        if (Random.Range(0, 2) == 0)
-        {
-            x = -1f;
-        }
-        if (Random.Range(0, 2) == 0)
-        {
-            y = -1f;
-        }
-        Vector3 dir = new Vector3(x, y, 0);
-        return dir;
-
-    }
 }

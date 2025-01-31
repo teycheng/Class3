@@ -25,6 +25,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Vector3 movement = Vector3.up * vertInput * speed * Time.deltaTime;
         Vector3 newPos = transform.position + movement;
         newPos.y = Mathf.Clamp(newPos.y, -4, 4);
-        rb.MovePosition(transform.position + movement);
+        rb.MovePosition(newPos);
     }
 }
